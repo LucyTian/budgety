@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <title>Make your budget Now!</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!--    Font Awesome CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+
+    <!--    Customized CSS -->
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+
+  <body>
+
+    <div class="container-fluid">
+      <!--  Part one: Display panel of the budget -->
+      <div class="container-fluid display-panel">
+        <div class="row">
+          <div class="col-sm-4">empty</div>
+          <div class="col-sm-4">
+            <div class="container show-panel">
+              <div class="row" id="show-description">
+                <p>Available Budget in %Month%:</p>
+              </div>
+
+              <div class="row" id="show-balance">
+                <p>2332.32</p>
+              </div>
+
+            </div>
+            <div class="container">
+              <div class="row balance-box income-box" id = "income">
+                <div class="col-sm-7">
+                  income
+                </div>
+                <div class="col-sm-3" id="income-value">
+                  1000
+                </div>
+              </div>
+              <div class="row balance-box expense-box" id="expense">
+                <div class="col-sm-7">
+                  expenses
+                </div>
+                <div class="col-sm-3">
+                  <div class="" id="expense-value"> 0</div>
+                  <div class="badge expense-percentage" id="expense-percentage">10%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">empty</div>
+        </div>
+      </div>
+      
+      <hr>
+
+      <!--      Part 2: operating panel -->
+      <div class="container-fluid operating-panel">
+        <div class="row">
+          <div class="col-sm-3">Empty</div>
+          <div class="col-sm-6">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown-choose-type" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                +
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">+</a>
+                <a class="dropdown-item" href="#">-</a>
+              </div>
+            </div>
+            <!--            Input description form -->
+            <div class="form-group">
+              <input type="text" class="form-control" id="input-description" placeholder="Add description">
+            </div>
+            <!--            Input value form -->
+            <div class="form-group">
+              <input type="number" class="form-control" id="input-value" placeholder="Value">
+            </div>
+            <!--            submit button -->
+            <div class="btn submit-btn" type="submit">
+              <i class="far fa-check-circle fa-2x"></i>
+            </div>
+          </div>
+
+          <div class="col-sm-3">Empty</div>
+        </div>
+      </div>
+      
+      <hr>
+
+      <!--      Part 3: history record panel -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-6 history-panel">
+            <header class="history-header">Income</header>
+            <div class="income-list">
+              <div class="row" id="income-list-0">
+                <div class="col-sm-8 item-description">
+                  description-0
+                </div>
+                <div class="col-sm-4">
+                  <div class="amount">10</div>
+                  <div class="delete-item">
+                    <button class="btn" type="submit"><i class="fas fa-minus-circle fa-2x"></i></button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 history-panel">
+            <header class="history-header">Expenses</header>
+            <div class="expense-list">
+              <div class="row" id="income-list-0">
+                <div class="col-sm-8 item-description">
+                  description-0
+                </div>
+                <div class="col-sm-4">
+                  <div class="amount">10</div>
+                  <div class="list-percentage">10%</div>
+                  <div class="delete-item">
+                    <button class="btn" type="submit"><i class="fas fa-minus-circle fa-2x"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <!--   Customized app.js -->
+
+
+  </body>
+
+</html>
