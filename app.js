@@ -16,7 +16,7 @@ var budgetController = (function(){
 
   var Expense = function(id, description, value){
     this.id = id;
-    this.desription = description;
+    this.description = description;
     this.value = value;
   };
   
@@ -47,7 +47,6 @@ var budgetController = (function(){
     
   };
   
-  
   return {
     addItem: addItem,
     deleteItem: deleteItem
@@ -64,20 +63,49 @@ var UIController = (function(){
     inputType: '.add-type',
     inputDescription: '#input-description',
     inputValue: '#input-value',
-    inputButton: '.submit-btn'
+    inputButton: '.submit-btn',
+    incomeContainer: '.income-list',
+    expenseContainer: '.expense-list'
   }
 
   return {
     getInput: function(){
       return {
         type: document.querySelector(DOMString.inputType).value, // 'inc' or 'dec'
-        description : document.querySelector(DOMString.inputDescription).value,
+        description: document.querySelector(DOMString.inputDescription).value,
         value: document.querySelector(DOMString.inputValue).value
       }
     },
 
     getDOMString: function() {
       return DOMString;
+    },
+    
+    addListItem: function(obj, type) {
+      
+      
+      var html, element;
+      
+      // create HTML string with placeholder text
+      
+      if (type === 'inc') {
+        html = '<div class="row" id="income-list-%id%"> <div class="col-sm-8 item-description"> %description% </div> <div class="col-sm-4"> <div class="amount">%value%</div> <div class="delete-item"> <button class="btn" type="submit"><i class="fas fa-minus-circle fa-2x"></i></button> </div></div></div>';
+        
+        element = document.querySelector(DOMString.incomeContainer);
+      } else if (type === 'dec'){
+        html = '<div class="row" id="income-list-%id%"> <div class="col-sm-8 item-description"> %description% </div> <div class="col-sm-4"> <div class="amount">%value%</div>  <div class="list-percentage">%percent%</div> <div class="delete-item"><button class="btn" type="submit"><i class="fas fa-minus-circle fa-2x"></i></button> </div> </div> </div>';
+        
+        element = document.querySelector(DOMString.expenseContainer);
+      }
+      
+      // replace the placeholder text with actual value
+      html = html.replace('%id%', obj.id);
+      html = html.replace('%description%', obj.description);
+      html = html.replace('%value%', obj.value);
+      
+      // insert the html into the doc
+      
+      element.insertAdjacentHTML('beforeend', html);
     }
   }
 
@@ -111,10 +139,9 @@ var appController = (function(bugetCtrl, UICtrl){
 
     // 2. add the item to the budget
     newItem = bugetCtrl.addItem(input.type, input.description, input.value);
-    
-    console.log(newItem);
 
     // 3. add the item to the interface
+    UICtrl.addListItem(newItem, input.type);
 
     // 4. calculate the budget
 
