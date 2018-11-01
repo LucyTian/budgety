@@ -161,7 +161,8 @@ var UIController = (function(){
 
     historyList: '.history-list',
     
-    expensePercLabel: '.list-percentage' 
+    expensePercLabel: '.list-percentage',
+    monthLabel: '#show-description'
   };
 
 
@@ -249,12 +250,6 @@ var UIController = (function(){
   var displayPercent = function(allPerc) {
     var fields = document.querySelectorAll(DOMString.expensePercLabel);
     
-    
-    var nodeListForEach = function(list, callback) {
-      for (var i = 0; i < list.length; i++) {
-        callback(fields[i], i);
-      }
-    }
     // a method to iternate on node lists
     nodeListForEach(fields, function(cur, index) {
       
@@ -264,6 +259,36 @@ var UIController = (function(){
         cur.textContent = '---'; 
       }
       
+    });
+  }
+  
+  // 7. display the month
+  var displayMonth = function(){
+    var now, year, month, element, monthStr, months;
+    now = new Date();
+    
+    year = now.getFullYear();
+    
+    
+    months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    
+    month = months[now.getMonth() - 1];
+    
+    element = document.querySelector(DOMString.monthLabel);
+    monthStr = element.textContent;
+    
+    element.textContent = monthStr.replace('%Month%', month + " " + year);
+  }
+  
+  // 8. changed type
+  var changeType = function() {
+    var fields = document.querySelectorAll(DOMString.inputDescription,
+                                          DOMString.inputValue,
+                                          DOMString.inputType,
+                                          DOMString.inputButton);
+    
+    nodeListForEach(fields, function(cur, i) {
+      cur.classList.toggle('red-focus');
     });
   }
   
@@ -283,6 +308,12 @@ var UIController = (function(){
     return sign + ' ' + num;  
   }
   
+  var nodeListForEach = function(list, callback) {
+      for (var i = 0; i < list.length; i++) {
+        callback(list[i], i);
+      }
+    }
+  
   return {
     getInput: getInput,
     addListItem: addListItem,
@@ -290,7 +321,9 @@ var UIController = (function(){
     clearInput: clearInput,
     displayBudget: displayBudget,
     getDOMString: getDOMString,
-    displayPercent: displayPercent
+    displayPercent: displayPercent,
+    displayMonth: displayMonth,
+    changeType: changeType
   }
 
 })();
@@ -320,6 +353,9 @@ var appController = (function(bugetCtrl, UICtrl){
       function(element){
         element.addEventListener('click', ctrlDeleteItem);
       });
+    
+    // change the color of the box for input according to input type
+    document.querySelector(DOM.inputType).addEventListener('change', UICtrl.changeType);
 
   }
 
@@ -414,6 +450,8 @@ var appController = (function(bugetCtrl, UICtrl){
       });
 
       addEventListener();
+      
+      UICtrl.displayMonth(); 
     }
   });
 
